@@ -1,0 +1,23 @@
+$(document).ready(function () {
+
+
+alert('change');
+
+/*$("#edit-submitted-greenhouse-area").change(function() {
+if($(this).val() > 250000) {
+     $("#edit-submitted-categories-of-greenhouses").val('Large');
+}
+else {
+     $("#edit-submitted-categories-of-greenhouses").val('Small');
+}
+});
+
+$("#edit-submitted-greenhouse-costs-heat").change(function() {
+//var sqft = $(this).val() * 1000 / $("#edit-submitted-greenhouse-size").val();
+//$("#edit-submitted-greenhouse-costs-heat-per-sq-ft").val(0);
+
+});
+*/
+
+
+});

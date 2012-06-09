@@ -1,0 +1,219 @@
+<?php
+
+function operatingmargins_help($path, $arg) {
+
+  return 'Operating Margins Help';
+
+}
+
+function operatingmargins_perm() {
+
+  return array('access operatingmargins content');
+
+}
+
+function operatingmargins_menu() {
+  $items['operatingmargins/confirmation/%/%'] = array('page callback' => 'operatingmargins_confirmation_page',
+						      'page arguments' => array(2, 3), // argument position!!
+						      'access arguments' => array("access content"),
+						      'type' => MENU_CALLBACK,
+						      'title' => 'Confirmation');
+
+  $items['operatingmargins/analysis/%'] = array('page callback' => 'operatingmargins_analysis_page',
+						'page arguments' => array(2), //argument position!!
+						'access arguments' => array("access content"),
+						'type' => MENU_CALLBACK,
+						'title' => 'Analysis');
+
+
+  return $items;
+
+}
+
+function operatingmargins_theme() {
+
+  return array('operatingmargins_confirmation' => array('arguments' => array('data' => NULL),
+							'template' => 'operatingmargins_confirmation'),
+	       'operatingmargins_analysis' => array('arguments' => array('data' => NULL),
+						    'template' => 'operatingmargins_analysis'));
+	       
+
+}
+
+function get_webform_data($node, $submission) {
+
+  // insert_mappings (keys from operating_margins table, keys from webform table table)
+  $INSERT_MAPPINGS = array('fiscal_year' => 'fiscal_year',
+			   'prov' => 'prov',
+			   'greenhouse_area' => 'greenhouse_area',
+			   'accrual' => 'accrual',
+			   'size' => 'size',
+			   'type' => 'type',
+			   'crop_sales_sales_of_products_produced_in_your_greenhouse_or_fiel' => 'crop_sales_sales_of_products_produced_in_your_greenhouse_or_field_operations',
+			   'other_sales_sales_of_plants_or_products_purchased_of_resale__oth' => 'other_sales_sales_of_plants_or_products_purchased_of_resale__other_sources_of_revenue',
+			   'heat' => 'heat',
+			   'hydro' => 'hydro',
+			   'repairs' => 'repairs',
+			   'fertilizer_and_sprays' => 'fertilizer_and_sprays',
+			   'seeds_cuttings' => 'seeds_cuttings',
+			   'growing_media' => 'growing_media',
+			   'containers_pots_pails' => 'containers_pots_pails',
+			   'packaging_labels_boxes' => 'packaging_labels_boxes',
+			   'royalties' => 'royalties',
+			   'freight' => 'freight',
+			   'other' => 'other',
+			   'flowers_purchased_for_resale' => 'flowers_purchased_for_resale',
+			   'sales_and_marketing_wages' => 'sales_and_marketing_wages',
+			   'advertising_and_promotion' => 'advertising_and_promotion',
+			   'travel_and_entertainment' => 'travel_and_entertainment',
+			   'other_sales_and_marketing_expenses' => 'other_sales_and_marketing_expenses',
+			   'professional_fees' => 'professional_fees',
+			   'rent_and_lease_payment' => 'rent_and_lease_payment',
+			   'repairs_and_maintenance' => 'repairs_and_maintenance',
+			   'insurance_vehicle_and_building' => 'insurance_vehicle_and_building',
+			   'insurance' => 'insurance',
+			   'training_and_education' => 'training_and_education',
+			   'truck_and_auto_expenses' => 'truck_and_auto_expenses',
+			   'office_expenses_and_supplies' => 'office_expenses_and_supplies',
+			   'licenses_and_taxes' => 'licenses_and_taxes',
+			   'wages_and_salary___family' => 'wages_and_salary___family',
+			   'wages_commissions_and_benefits___other' => 'wages_commissions_and_benefits___other',
+			   'other_expenses' => 'other_expenses',
+			   'other_income' => 'other_income',
+			   'scientific_research_and_development_credits' => 'scientific_research_and_development_credits',
+			   'agri_invest_income' => 'agri_invest_income',
+			   'other_government_assistance' => 'other_government_assistance',
+			   'income_recoveries' => 'income_recoveries',
+			   'rent' => 'rent',
+			   'other_income_2' => 'other_income_2');
+  
+
+  $result = db_query("SELECT wfc.form_key, wfsd.data, wfs.uid
+		    FROM 
+                    ({webform_submitted_data} wfsd 
+                    INNER JOIN 
+                    {webform_component} wfc
+                    ON wfsd.cid = wfc.cid AND
+                    wfsd.nid = wfc.nid)
+                    INNER JOIN
+                    {webform_submissions} wfs
+                    ON wfs.sid = wfsd.sid
+                    WHERE wfsd.sid = %d AND wfsd.nid = %d", 
+		     $submission->sid, $node->nid);
+
+  $data = array();
+  $uid = 0;
+  while ($record = db_fetch_array($result)) {
+    $data[$record['form_key']] = $record['data'];
+    $uid = $record['uid'];
+  }
+
+  $update_data = array();
+  foreach($INSERT_MAPPINGS as $key => $val)
+    $update_data[$key] = $data[$val];
+
+  // extra fields (not in webform)
+  $update_data['sid'] = $submission->sid;
+  $update_data['userid'] = $uid;
+  $update_data['save'] = true;
+
+  return $update_data;
+
+}
+
+
+function operatingmargins_webform_submission_insert($node, $submission) {
+
+  $insert_data = get_webform_data($node, $submission);
+
+  // insert data into operating_margins table
+  $query = sprintf("INSERT INTO operating_margins (%s) VALUES ('%s')",
+		   implode(",", array_keys($insert_data)),
+		   implode("','", array_values($insert_data)));
+  $result = db_query($query);
+
+}
+
+function operatingmargins_webform_submission_update($node, $submission) {
+
+  $update_data = get_webform_data($node, $submission);
+  unset($update_data['sid']);
+  // update data into operating_margins table
+  
+
+  $query = "UPDATE operating_margins SET ";
+  foreach($update_data as $key => $val)
+    $query .= sprintf("%s = '%s',", $key, $val);
+  $query = trim($query, ',');
+  $query .= sprintf(" WHERE sid = %s", $submission->sid);
+
+  $result = db_query($query);
+
+
+}
+
+function operatingmargins_webform_submission_delete($node, $submission) {
+
+  db_query("DELETE FROM operating_margins WHERE sid = %d", $submission->sid);
+
+}
+
+
+function operatingmargins_confirmation_page($nid, $sid) {
+
+  $data = get_webform_data($node, $submission);
+		     
+  return theme('operatingmargins_confirmation', $data);
+
+}
+
+/*
+ * TODO: Analysis page will have a user context
+ *
+ */
+function operatingmargins_analysis_page($userid) {
+
+  $query = db_query("SELECT size, type " .
+		    "FROM operating_margins WHERE userid = %d", $userid);
+  $my_result = db_fetch_array($query);
+
+  $my_totals = array();
+
+  $filters = array();
+  $filters['my'] = sprintf("WHERE userid = %d", $userid);
+  $filters['all'] = '';
+  $filters['size'] = sprintf('WHERE size = %d', $my_result['size']);
+  $filters['type'] = sprintf('WHERE type = %d', $my_result['type']);
+  $filters['like'] = sprintf('WHERE size = %d AND type = %d', $my_result['size'], $my_result['type']);
+
+  foreach($filters as $filter_key => $filter) {
+    $query_str = "SELECT AVG(heat) AS avg_heat, AVG(hydro) AS avg_hydro, AVG(repairs) AS avg_repairs, " .
+      "AVG(fertilizer_and_sprays) AS avg_fertilizer_and_sprays, " .
+      "AVG(seeds_cuttings) AS avg_seeds_cuttings, " .
+      "AVG(growing_media) AS avg_growing_media, " .
+      "AVG(containers_pots_pails) AS avg_containers_pots_pails, " .
+      "AVG(packaging_labels_boxes) AS avg_packaging_labels_boxes, " .
+      "AVG(royalties) AS avg_royalties, " .
+      "AVG(freight) AS avg_freight, " .
+      "AVG(other) AS avg_other, " .
+      "AVG(wages_commissions_and_benefits___other) AS avg_wages_commissions_and_benefits___other, " .
+      "AVG(crop_sales_sales_of_products_produced_in_your_greenhouse_or_fiel) AS avg_crop_sales_sales_of_products_produced_in_your_greenhouse_or_fiel " .
+      "FROM operating_margins " .
+      $filter;
+
+    $query = db_query($query_str);
+
+    $results = db_fetch_array($query);
+    $calc['greenhouse_sales'][$filter_key] = $results['avg_crop_sales_sales_of_products_produced_in_your_greenhouse_or_fiel'];
+    $calc['greenhouse_costs'][$filter_key] = $results['avg_heat'] + $results['avg_hydro'] + $results['avg_repairs'];
+    $calc['input_costs'][$avg_filter_key] = $results['avg_fertilizer_and_sprays'] + $results['avg_seeds_cuttings'] + $results['avg_growing_media'] + $results['avg_containers_pots_pails'] + $results['avg_packaging_labels_boxes'] + $results['avg_royalties'] + $results['avg_freight'] + $results['avg_other'];
+    $calc['labour'][$filter_key] = $results['avg_wages_commissions_and_benefits___other'];
+    $calc['production_costs'][$filter_key] = $calc['greenhouse_costs'][$filter_key] + $calc['input_costs'][$filter_key] + $calc['labour'][$filter_key];
+    $calc['production_margin'][$filter_key] = $calc['greenhouse_sales'][$filter_key] - $calc['production_costs'][$filter_key];
+  }
+
+  //var_dump($calc);
+
+  return theme('operatingmargins_analysis', $calc);
+  
+}

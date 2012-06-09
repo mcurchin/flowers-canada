@@ -1,0 +1,105 @@
+<table border="0" frame="VOID" rules="NONE" cellspacing="0">
+<colgroup><col width="440" /><col width="101" /><col width="118" /><col width="84" /></colgroup>
+<tbody>
+<tr>
+<td align="LEFT" valign="BOTTOM" width="440" height="19"><span style="color: #000000; font-family: 'Arial Black';">&nbsp;</span></td>
+<td align="LEFT" valign="BOTTOM" width="101"><span style="color: #000000;">&nbsp;</span></td>
+<td align="LEFT" valign="BOTTOM" width="118"><span style="color: #000000;">&nbsp;</span></td>
+<td align="LEFT" valign="BOTTOM" width="84"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-top: 3px solid #000000; border-bottom: 3px solid #000000; border-left: 3px solid #000000;" colspan="2" align="CENTER" valign="BOTTOM"><span style="color: #000000;">Greenhouse</span></td>
+<td style="border-top: 3px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" rowspan="2" align="CENTER" valign="BOTTOM"><span style="color: #000000;">Total</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="38"><span style="color: #000000;">Income</span></td>
+<td style="border-top: 3px solid #000000; border-left: 3px solid #000000;" align="CENTER" valign="BOTTOM"><span style="color: #000000;">Total</span></td>
+<td style="border-top: 3px solid #000000; border-right: 3px solid #000000;" align="CENTER" valign="BOTTOM"><span style="color: #000000;">Per Square Foot</span></td>
+</tr>
+<tr>
+<td style="border-top: 3px solid #000000; border-bottom: 3px solid #000000; border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Revenue/Sales</span></td>
+<td style="border-top: 3px solid #000000; border-bottom: 3px solid #000000; border-left: 3px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$7,500</span></td>
+<td style="border-top: 3px solid #000000; border-bottom: 3px solid #000000; border-right: 3px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$16.67</span></td>
+<td style="border: 3px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$9,000</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Expenses</span></td>
+<td style="border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Production Expenses</span></td>
+<td style="border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="border-top: 3px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Greenhouse</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$852.00</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$1.89</span></td>
+<td style="border-top: 3px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Variable Inputs</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$3,432.00</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$7.63</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Labor</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$2,500.00</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$13.08</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="border-bottom: 3px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Total</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$6,784.00</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$22.60</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$6,784</span></td>
+</tr>
+<tr>
+<td style="border-top: 3px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Gross Margin</span></td>
+<td style="border-top: 1px solid #000000; border-right: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$716.00</span></td>
+<td style="border-top: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$1.59</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 3px solid #000000; border-left: 3px solid #000000; border-right: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+</tr>
+<tr>
+<td style="border-top: 3px solid #000000; border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Plants purchased for Resale</span></td>
+<td style="border-top: 3px solid #000000; border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-top: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-top: 3px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$300</span></td>
+</tr>
+<tr>
+<td style="border-bottom: 3px solid #000000; border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Other Income</span></td>
+<td style="border-bottom: 3px solid #000000; border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-bottom: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 3px solid #000000; border-left: 1px solid #000000; border-right: 3px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Gross Margin for Firm</span></td>
+<td style="border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$1,916</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">Sales and Marketing</span></td>
+<td style="border: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0.00</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0.00</span></td>
+<td style="border: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0.00</span></td>
+</tr>
+<tr>
+<td align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">General and Administrative Costs</span></td>
+<td style="border: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0.00</span></td>
+<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0.00</span></td>
+<td style="border: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$0.00</span></td>
+</tr>
+<tr>
+<td style="border: 3px solid #000000;" align="LEFT" valign="BOTTOM" height="19"><span style="color: #000000;">EBITA Earnings before Interest, Taxes and Amortization</span></td>
+<td style="border-bottom: 3px solid #000000; border-left: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border-bottom: 3px solid #000000;" align="LEFT" valign="BOTTOM"><span style="color: #000000;">&nbsp;</span></td>
+<td style="border: 1px solid #000000;" align="RIGHT" valign="BOTTOM"><span style="color: #000000;">$1,916</span></td>
+</tr>
+</tbody>
+</table>

@@ -1,0 +1,4 @@
+name = Operating Margins
+description = Operating Margins
+core = 6.x
+dependencies[] = webform

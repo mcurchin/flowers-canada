@@ -1,0 +1,10 @@
+<?php
+// $Id: gvs.install,v 1.1 2010/04/26 12:40:11 btomic Exp $
+
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function gvs_uninstall() {
+  variable_del('gvs_api_key');
+}

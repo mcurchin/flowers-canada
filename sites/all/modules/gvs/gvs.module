@@ -1,0 +1,140 @@
+<?php
+// $Id: gvs.module,v 1.5 2010/06/29 11:30:11 btomic Exp $
+
+/**
+ * @file
+ * Provide a views style for Google Visualization API.
+ */
+
+include dirname(__FILE__) .'/gvs.theme.inc';
+/**
+ * Implementation of hook_views_api().
+ */
+function gvs_views_api() {
+  return array('api' => 2);
+}
+
+function gvs_perm() {
+  return array(
+	'see embeding link',
+  );
+}
+
+function theme_gvs_display_item($id) {
+  static $display = array();
+  if (!isset($display[$id])) $display[$id] = FALSE;
+  $output = $display[$id];
+  if ($display[$id] == FALSE) $display[$id] = TRUE;
+  return $output;
+}
+
+
+/**
+ * Implementation of hook_menu().
+ */
+function gvs_menu() {
+  $items['admin/settings/gvs'] = array(
+    'title' => 'Google visualization api',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('gvs_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['gvs/ajax'] = array(
+    'title' => 'Ajax',
+    'page callback' => 'gvs_ajax_embed_callback',
+    'access arguments' => array('see embeding link'),
+    'type' => MENU_CALLBACK,
+  );  
+  return $items;
+}
+
+/**
+* GVS settings form
+*/
+function gvs_admin_settings(&$form_state) {
+  // if Google map api key exists use it
+  if (!module_exists('keys_api')) {
+    $form['dv_api_key'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Google Maps API Key'),
+      '#default_value' => variable_get('googlemap_api_key', '') ? variable_get('googlemap_api_key', '') : variable_get('dv_api_key', ''),
+      '#size' => 50,
+      '#maxlength' => 255,
+      '#description' => t('Your personal Googlemaps API key. You must get this for each separate website at <a href="http://www.google.com/apis/maps/">Google Map API website</a>.'),
+    );
+   } 
+  else {
+    $form['dv_api_key'] = array(
+      '#type' => 'item',
+      '#title' => t('Google Maps API Key'),
+      '#description' => t('Your personal Googlemaps API key.  You must get this for each separate website at <a href="http://www.google.com/apis/maps/">Google Map API website</a>.'),
+      '#value' => t("Managed by <a href='@url'>keys api</a>.", array('@url' => url('admin/settings/keys'))),
+    );
+  }
+  $form['gvs_extra_options'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show additional options in Views Style'),
+    '#default_value' => variable_get('gvs_extra_options', FALSE),
+  );
+  return system_settings_form($form);
+}
+
+function _gvs_save_file_data ($uid, $filename, $filepath, $storage, $vidi_link, $view_link, $result, $update, $title, $datasource){
+  $file = new stdClass();
+  $file->uid = $uid;
+  $file->filesize = filesize($filepath);
+  $file->timestamp = time();
+
+  if(!$update){
+    $file->filepath = $filepath;
+    $file->filename = $filename;
+    $file->filemime = file_get_mimetype($filepath);
+    $file->status = 1;
+    drupal_write_record('files', $file);
+    $gvs_embed_data = new stdClass();
+    $gvs_embed_data->fid = $file->fid;
+	$gvs_embed_data->title=$title;
+	$gvs_embed_data->datasource=$datasource;
+
+    if(!empty($storage))
+      $gvs_embed_data->form_state_storage = $storage;
+    if(!empty($vidi_link))
+      $gvs_embed_data->link_vidi = $vidi_link;
+    if(!empty($view_link))
+      $gvs_embed_data->link_view = $view_link;
+      $gvs_embed_data->visualisation_code = $result;
+    drupal_write_record('gvs_embeds', $gvs_embed_data);
+  }
+  else{
+    $sql = "SELECT fid FROM {files} WHERE filepath='%s'";
+    $file->fid = db_result(db_query($sql, $filepath));
+    drupal_write_record('files', $file, 'fid');
+    $gvs_embed_data = new stdClass();
+    $gvs_embed_data->fid = $file->fid;
+	$gvs_embed_data->title=$title;
+	$gvs_embed_data->datasource=$datasource;
+    $gvs_embed_data->visualisation_code = $result;
+    drupal_write_record('gvs_embeds', $gvs_embed_data, 'fid');
+  }
+}
+
+function gvs_ajax_embed_callback (){
+	global $user;
+	global $base_url;
+	$forever = $_POST['forever']; $dest = rawurldecode($_POST['dest']); $filestring = rawurldecode($_POST['filestring']);$viewname=$_POST['vname'];$current_display=$_POST['display'];
+	$width=$_POST['width'];$height = $_POST['height'];$title = $_POST['title'];$datasource = $_POST['datasource'];
+    if ($forever == '1') {
+		$filename = file_save_data($filestring,$dest,$replace = FILE_EXISTS_RENAME);
+		$update = 0;
+	}
+    else {
+		$filename = file_save_data($filestring,$dest,$replace = FILE_EXISTS_REPLACE);
+		$update = 1;
+	}
+	$iframe='<iframe frameborder="0" scrolling = "no" width="' .$width . 'px" height="' . $height . 'px" src="'.$base_url . '/'. $filename.'"></iframe>';
+	$filename1 = substr($filename, strrpos($filename,'/')+1,strlen($filename)-strrpos($filename,'/'));
+	$view_link = 'admin/build/views/edit/' . $viewname . '?#views-tab-' . $current_display;
+	_gvs_save_file_data ($user->uid,$filename1,$filename,'','',$view_link,$iframe,$update,$title,$datasource);
+
+}
