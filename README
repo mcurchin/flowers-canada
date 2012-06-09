@@ -1,1 +1,8 @@
 Flowers Canada Project Source
+
+- Installation instructions
+  - git clone from ssh
+  - set up Apache
+  - (optional) set up vhost to point to local
+  - Run db_xxxx.sql script
+
